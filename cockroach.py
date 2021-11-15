@@ -24,7 +24,7 @@ def get_random_position(i, num):
         col = 540 + random.randint(1, min(500, i * (500 // num) + 250))
     return row, col
 
-@sv.on_prefix(('cockroach'))                              
+@sv.on_prefix(('飞天大蟑螂'))  #后面跟数字可以指定最多多少只                              
 async def random_cockroach(bot, ev):  
     args = ev.message.extract_plain_text().strip().split()
     if len(args) == 0:
