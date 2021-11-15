@@ -12,16 +12,17 @@ base_path = './hoshino/modules/bigzhanglang/bg.png'
 cockroach_path = './hoshino/modules/bigzhanglang/cockroach_1.png'     
 
 def get_random_position(i, num):
-    if random.randint(1, 2) == 1:
-        row = 540 - random.randint(1, min(500, i * (500 // num) + 250))
-        
-    else:
-        row = 540 + random.randint(1, min(500, i * (500 // num) + 250))
-        
-    if random.randint(1, 2) == 1:
-        col = 540 - random.randint(1, min(500, i * (500 // num) + 250))
-    else:
-        col = 540 + random.randint(1, min(500, i * (500 // num) + 250))
+    #temp = (500 // num) if num < 500 else 1
+    #if random.randint(1, 2) == 1:
+        #row = 540 - random.randint(1, min(500, i * temp + 250))
+    #else:
+    #    row = 540 + random.randint(1, min(500, i * temp + 250))  
+    #if random.randint(1, 2) == 1:
+    #    col = 540 - random.randint(1, min(500, i * temp + 250))
+    #else:
+    #    col = 540 + random.randint(1, min(500, i * temp + 250))
+    row = random.randint(1, 1040)
+    col = random.randint(1, 1040)
     return row, col
 
 @sv.on_prefix(('飞天大蟑螂'))  #后面跟数字可以指定最多多少只                              
