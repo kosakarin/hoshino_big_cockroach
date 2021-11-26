@@ -12,7 +12,7 @@ sv = Service('随机唐可可', bundle='randomtkk', help_='''
 base_path = os.path.join(os.path.dirname(__file__), 'bg.png')  
 tkk_path = os.path.join(os.path.dirname(__file__), 'icon/tangkuku.png')   
 mark_path = os.path.join(os.path.dirname(__file__), 'icon/mark.png')
-icon_path = os.path.join(os.path.dirname(__file__), 'icon/)
+icon_path = os.path.join(os.path.dirname(__file__), 'icon/')
 ez_num = 10    #简单难度
 nr_num = 20    #普通难度
 hd_num = 30    #困难难度
