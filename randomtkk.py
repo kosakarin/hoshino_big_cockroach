@@ -10,7 +10,7 @@ sv = Service('随机唐可可', bundle='randomtkk', help_='''
 答案格式是 [答案是][列][空格][行] 例如：答案是114 514 or 答案是 114 514
 '''.strip())
 #一些设置
-font = ImageFont.truetype(os.path.join(os.path.dirname(__file__), 'msyh.ttc'),16) 
+font = ImageFont.truetype(os.path.join(os.path.dirname(__file__), 'icon/msyh.ttc'),16) 
 tkk_path = os.path.join(os.path.dirname(__file__), 'icon/tangkuku.png')   
 mark_path = os.path.join(os.path.dirname(__file__), 'icon/mark.png')
 icon_path = os.path.join(os.path.dirname(__file__), 'icon/')
