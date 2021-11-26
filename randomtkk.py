@@ -20,7 +20,7 @@ hd_num = 30    #困难难度
 ex_num = 40    #地狱难度数量
 max_num = 80   #最大数量 超过默认使用ez
 waittime = 30  #num = 15时答案等待时间 最终等待时间公式为 waittime = int(waittime * min(2, (num / 15)))
-
+coor_switch = True #坐标显示开关
 guess_flag = [] #记忆群内是否猜出答案 是则为{'群号':1}，在为1时不会响应回答语句
 now_playing = [] #防止多局游戏 在为1时不会相应创建游戏指令
 daan = [] #记忆每个群的答案 答案格式为str([列][空格][横])（我也不知道为啥反了，懒得改了） 在一个群没有答案的时候会被置为'error'
@@ -137,15 +137,17 @@ async def random_tkk(bot, ev):
             if r == row - 1 and c == col - 1:
                 tkk = Image.open(tkk_path)
                 tkk = tkk.resize((64, 64), Image.ANTIALIAS)      #加载icon
-                draw = ImageDraw.Draw(tkk)
-                draw.text((32,40),f"({r+1},{c+1})",font=font,fill=(255, 0, 0, 0))
+                if coor_switch：
+                    draw = ImageDraw.Draw(tkk)
+                    draw.text((32,40),f"({r+1},{c+1})",font=font,fill=(255, 0, 0, 0))
                 base.paste(tkk, (r * 64, c * 64))
                 temp += 1
             else:
                 icon = Image.open(icon_path + str(random.randint(1, 22)) + '.png')
                 icon = icon.resize((64,64), Image.ANTIALIAS)
-                draw = ImageDraw.Draw(icon)
-                draw.text(（32，40),f"({r+1},{c+1})",font=font,fill=(255, 0, 0, 0))
+                if coor_switch：
+                    draw = ImageDraw.Draw(icon)
+                    draw.text(（32，40),f"({r+1},{c+1})",font=font,fill=(255, 0, 0, 0))
                 base.paste(icon, (r * 64, c * 64))
     buf = BytesIO()
     base.save(buf, format='PNG')
