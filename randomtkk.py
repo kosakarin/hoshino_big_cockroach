@@ -1,5 +1,5 @@
 import base64, os, random, asyncio
-from PIL import Image
+from PIL import Image, ImageFont, ImageDraw
 from hoshino import Service
 from hoshino.typing import CQEvent
 from io import BytesIO
@@ -10,7 +10,7 @@ sv = Service('随机唐可可', bundle='randomtkk', help_='''
 答案格式是 [答案是][列][空格][行] 例如：答案是114 514 or 答案是 114 514
 '''.strip())
 #一些设置
-base_path = os.path.join(os.path.dirname(__file__), 'bg.png')   
+font = ImageFont.truetype(os.path.join(os.path.dirname(__file__), 'msyh.ttc'),16) 
 tkk_path = os.path.join(os.path.dirname(__file__), 'icon/tangkuku.png')   
 mark_path = os.path.join(os.path.dirname(__file__), 'icon/mark.png')
 icon_path = os.path.join(os.path.dirname(__file__), 'icon/')
@@ -131,18 +131,21 @@ async def random_tkk(bot, ev):
     col , row = get_random_position_tkk(num)
     da = f'{row} {col}'
     set_daan(gid, da) #设置群答案
-    base = Image.open(base_path)
-    base = base.resize((64 * num, 64 * num), Image.ANTIALIAS)    #加载底图
-    tkk = Image.open(tkk_path)
-    tkk = tkk.resize((64, 64), Image.ANTIALIAS)      #加载icon
+    base = Image.new("RGB",(64 * num, 64 * num))
     for r in range(0,num):
         for c in range(0,num):
             if r == row - 1 and c == col - 1:
+                tkk = Image.open(tkk_path)
+                tkk = tkk.resize((64, 64), Image.ANTIALIAS)      #加载icon
+                draw = ImageDraw.Draw(tkk)
+                draw.text((32,40),f"({r+1},{c+1})",font=font,fill=(255, 0, 0, 0))
                 base.paste(tkk, (r * 64, c * 64))
                 temp += 1
             else:
                 icon = Image.open(icon_path + str(random.randint(1, 22)) + '.png')
                 icon = icon.resize((64,64), Image.ANTIALIAS)
+                draw = ImageDraw.Draw(icon)
+                draw.text(（32，40),f"({r+1},{c+1})",font=font,fill=(255, 0, 0, 0))
                 base.paste(icon, (r * 64, c * 64))
     buf = BytesIO()
     base.save(buf, format='PNG')
