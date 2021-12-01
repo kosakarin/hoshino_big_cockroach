@@ -137,17 +137,17 @@ async def random_tkk(bot, ev):
             if r == row - 1 and c == col - 1:
                 tkk = Image.open(tkk_path)
                 tkk = tkk.resize((64, 64), Image.ANTIALIAS)      #加载icon
-                if coor_switch：
+                if coor_switch:
                     draw = ImageDraw.Draw(tkk)
-                    draw.text((32,40),f"({r+1},{c+1})",font=font,fill=(255, 0, 0, 0))
+                    draw.text((20,40),f"({r+1},{c+1})",font=font,fill=(255, 0, 0, 0))
                 base.paste(tkk, (r * 64, c * 64))
                 temp += 1
             else:
                 icon = Image.open(icon_path + str(random.randint(1, 22)) + '.png')
                 icon = icon.resize((64,64), Image.ANTIALIAS)
-                if coor_switch：
+                if coor_switch:
                     draw = ImageDraw.Draw(icon)
-                    draw.text(（32，40),f"({r+1},{c+1})",font=font,fill=(255, 0, 0, 0))
+                    draw.text((20,40),f"({r+1},{c+1})",font=font,fill=(255, 0, 0, 0))
                 base.paste(icon, (r * 64, c * 64))
     buf = BytesIO()
     base.save(buf, format='PNG')
